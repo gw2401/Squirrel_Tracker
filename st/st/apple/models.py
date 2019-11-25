@@ -1,0 +1,27 @@
+from django.db import models
+class Squirrel(models.Model):
+    Latitude = models.FloatField()
+    Longitude = models.FloatField()
+    Unique_Squirrel_ID = models.CharField(max_length=15)
+    Shift = models.CharField(max_length=2)
+    Date = models.DateField()
+    Age = models.CharField(max_length = 100)
+    Primary_Fur_Color = models.CharField(max_length = 100)
+    Location = models.CharField(max_length = 100)
+    Specific_Location = models.CharField(max_length = 100)
+    Running = models.BooleanField()
+    Chasing = models.BooleanField()
+    Climbing = models.BooleanField()
+    Eating = models.BooleanField()
+    Foraging = models.BooleanField()
+    Other_Activities = models.CharField(max_length = 100)
+    Kuks = models.BooleanField()
+    Quaas = models.BooleanField()
+    Moans = models.BooleanField()
+    Tail_flags = models.BooleanField()
+    Tail_twitches = models.BooleanField()
+    Approaches = models.BooleanField()
+    Indifferent = models.BooleanField()
+    Runs_from = models.BooleanField()
+
+  # Create your models here.
