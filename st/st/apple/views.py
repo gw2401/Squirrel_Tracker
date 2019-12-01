@@ -1,30 +1,43 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Squirrel
 
 from django.views.generic.edit import UpdateView
+from .forms import SquirrelForm
+
 
 def all_squirrel_sightings(request):
     if request.method == 'GET':
-        squirrels = Squirrel.objects.all()
+        squirrel = Squirrel.objects.all()
         context = {
-           'squirrels':squirrels,
+           'squirrel':squirrel,
             }
         return render(request,'apple/all.html',context)
 
-class update(UpdateView):
-    if request.method == 'POST':
-        squirrels = Squirrel.objects.all()
-        context {
-                'squirrels': squirrels }
-        return render(request,'apple/squirrel_uodate_form.html',context) 
-    #template_name_suffix = '_update_form'
+def squirrel_update(request, unique_squirrel_id):
+    template = 'apple/form.html'
+    squirrel = get_object_or_404(Squirrel,Unique_Squirrel_ID=unique_squirrel_id)
+    form = SquirrelForm(request.POST or None, instance=squirrel)
+    if form.is_valid():
+        form.save()
+        return redirect('apple:all_squirrel_sightings')
+    context = {"form": form}
+    return render(request, template, context)      
 
-#def update(UpdateView)i:
-#    if request.method == 'POST':
-#    	model = Squirrel
-#    	fields = ['Unique_Squirrel_ID']
-#    	template_name_suffix = '_update_form'
-        
-#        return render(request,'apple/squirrel_update_form.html',context)
-## Create your views here.
+def squirrel_delete(request, unique_squirrel_id):
+    template = 'apple/delete.html'
+    squirrel = get_object_or_404(Squirrel, Unique_Squirrel_ID=unique_squirrel_id)
+    if request.method == 'POST':
+        squirrel.delete()
+        return redirect('apple:all_squirrel_sightings')
+    context = {"squirrel": squirrel}
+    return render(request, template, context)
+
+def squirrel_create(request):
+    template = 'apple/form.html'
+    form = SquirrelForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('apple:all_squirrel_sightings')
+    context = {"form": form}
+    return render(request, template, context)

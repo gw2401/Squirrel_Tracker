@@ -1,5 +1,23 @@
-<ul>
-  {% for squirrel in squirrels %}
-  <li>{{ squirrel.Unique_Squirrel_ID }}</li>
-  {% endfor %}
-</ul>
+{% extends 'base.html' %}
+{% block title %}
+apple
+{% endblock %}
+{% block content %}
+<table class="table table-bordered">
+  <tbody>
+    <a href="{% url 'apple:add' %}">add</a>
+    {% for s in squirrel %}
+    <tr>
+      <td>
+	<li>{{s.Unique_Squirrel_ID}}</li>      
+        <a href="{% url 'apple:update' s.Unique_Squirrel_ID %}">edit</a>
+        <a href="{% url 'apple:delete' s.Unique_Squirrel_ID %}">delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+
+
+
