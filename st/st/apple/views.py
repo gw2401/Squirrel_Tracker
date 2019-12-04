@@ -41,3 +41,21 @@ def squirrel_create(request):
         return redirect('apple:all_squirrel_sightings')
     context = {"form": form}
     return render(request, template, context)
+
+def squirrel_stats(request):
+    from django.db.models import Count
+    if request.method == 'GET':
+        running_t_frequency = Squirrel.objects.values("Running").order_by('Running').annotate(running_t_frequency = Count("Running"))
+        chasing_t_frequency = Squirrel.objects.values("Chasing").order_by('Chasing').annotate(chasing_t_frequency = Count("Chasing"))
+        climbing_t_frequency = Squirrel.objects.values("Climbing").annotate(climbing_t_frequency = Count("Climbing")).order_by()
+        eating_t_frequency = Squirrel.objects.values("Eating").annotate(eating_t_frequency = Count("Eating")).order_by()
+        foraging_t_frequency = Squirrel.objects.values("Foraging").annotate(foraging_t_frequency = Count("Foraging")).order_by()
+
+        context = {
+            'running_t_frequency': running_t_frequency,
+            'chasing_t_frequency': chasing_t_frequency,
+            'climbing_t_frequency': climbing_t_frequency,       
+            'eating_t_frequency': eating_t_frequency,
+            'foraging_t_frequency': foraging_t_frequency,
+            }
+        return render(request,'apple/stats.html',context)
