@@ -41,3 +41,16 @@ def squirrel_create(request):
         return redirect('apple:all_squirrel_sightings')
     context = {"form": form}
     return render(request, template, context)
+
+def squirrel_stats(request):
+    template = 'apple/stats.html' 
+    from django.db.models import Count
+    if request.method == 'GET':
+        running_true_frequency = Squirrel.objects.values('Running').annotate(Count(True)).order_by()
+        running_false_frequency = Squirrel.objects.values('Running').annotate(Count(False)).order_by() 
+    
+        context = {
+           'true_frequency':true_frequency,
+           'false_frequency':false_frequency, 
+            }
+        return render(request,'apple/all.html',context)
