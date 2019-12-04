@@ -9,19 +9,29 @@ class Squirrel(models.Model):
     Primary_Fur_Color = models.CharField(max_length = 100)
     Location = models.CharField(max_length = 100)
     Specific_Location = models.CharField(max_length = 100)
-    Running = models.BooleanField()
-    Chasing = models.BooleanField()
-    Climbing = models.BooleanField()
-    Eating = models.BooleanField()
-    Foraging = models.BooleanField()
-    Other_Activities = models.CharField(max_length = 100)
-    Kuks = models.BooleanField()
-    Quaas = models.BooleanField()
-    Moans = models.BooleanField()
-    Tail_flags = models.BooleanField()
-    Tail_twitches = models.BooleanField()
-    Approaches = models.BooleanField()
-    Indifferent = models.BooleanField()
-    Runs_from = models.BooleanField()
+    Running = models.CharField(max_length = 100)
 
-  # Create your models here.
+    Chasing = models.CharField(max_length = 100)
+
+    Climbing = models.CharField(max_length = 100)
+
+    Eating = models.CharField(max_length = 100)
+
+    Foraging = models.CharField(max_length = 100)
+
+    Other_Activities = models.CharField(max_length = 100)
+    Kuks = models.CharField(max_length = 100)
+
+    Quaas = models.CharField(max_length = 100)
+
+    Moans = models.CharField(max_length = 100)
+
+    Tail_flags =models.CharField(max_length = 100)
+
+    Tail_twitches =models.CharField(max_length = 100)
+
+    Approaches = models.CharField(max_length = 100)
+
+    Indifferent =models.CharField(max_length = 100)
+
+    Runs_from = models.CharField(max_length = 100)  # Create your models here.

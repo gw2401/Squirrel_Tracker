@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<h1>general stats about the sightings</h1>
+<body>
+
+<h2>Running</h2>
+<table border="l">
+
+<tr>
+ <th>Values</th>
+ <th>Count</th>
+</tr>
+{% for item in running_t_frequency %} 
+ <tr> 
+ {% for key, val in item.items %} 
+ <td>{{ val }}</td> 
+ {% endfor %} 
+ </tr> 
+ {% endfor %} 
+
+</table>
+
+<h2>Chasing</h2>
+<table border="l">
+
+<tr>
+ <th>Values</th>
+ <th>Count</th>
+</tr>
+{% for item in chasing_t_frequency %}
+
+ <tr>
+ {% for key, val in item.items %}
+ <td>{{ val }}</td>
+ {% endfor %}
+ </tr>
+ {% endfor %}
+
+</table>
+
+<h2>Climbing</h2>
+<table border="l">
+
+<tr>
+ <th>Values</th>
+ <th>Count</th>
+</tr>
+{% for item in climbing_t_frequency %}
+ <tr>
+ {% for key, val in item.items %}
+ <td>{{ val }}</td>
+ {% endfor %}
+ </tr>
+ {% endfor %}
+
+</table>
+<h2>Eating</h2>
+<table border="l">
+
+<tr>
+ <th>Values</th>
+ <th>Count</th>
+</tr>
+{% for item in eating_t_frequency %}
+ <tr>
+ {% for key, val in item.items %}
+ <td>{{ val }}</td>
+ {% endfor %}
+ </tr>
+ {% endfor %}
+
+</table>
+<h2>Foraging</h2>
+<table border="l">
+
+<tr>
+ <th>Values</th>
+ <th>Count</th>
+</tr>
+{% for item in foraging_t_frequency %}
+ <tr>
+ {% for key, val in item.items %}
+ <td>{{ val }}</td>
+ {% endfor %}
+ </tr>
+ {% endfor %}
+
+</table>
+
+</body>
+</html>
