@@ -17,7 +17,7 @@ def all_squirrel_sightings(request):
 def squirrel_update(request, unique_squirrel_id):
     template = 'apple/form.html'
     squirrel = get_object_or_404(Squirrel,Unique_Squirrel_ID=unique_squirrel_id)
-    form = SquirrelForm(request.POST or None, instance=squirrel)
+    form = SquirrelForm(request.POST or request.GET, instance=squirrel)
     if form.is_valid():
         form.save()
         return redirect('apple:all_squirrel_sightings')
@@ -35,7 +35,7 @@ def squirrel_delete(request, unique_squirrel_id):
 
 def squirrel_create(request):
     template = 'apple/form.html'
-    form = SquirrelForm(request.POST or None)
+    form = SquirrelForm(request.POST or request.GET)
     if form.is_valid():
         form.save()
         return redirect('apple:all_squirrel_sightings')
@@ -59,3 +59,18 @@ def squirrel_stats(request):
             'foraging_t_frequency': foraging_t_frequency,
             }
         return render(request,'apple/stats.html',context)
+
+def map(request):
+    if request.method == 'GET':
+        squirrels = Squirrel.objects.all()
+       # latitude = Squirrel.objects.values("Latitude")
+       # Longtitude = Squirrel.objects.values("Longtitude")
+        context = {
+                'squirrels': squirrels,
+                }
+        return render(request,'apple/map.html',context)
+
+
+
+
+
