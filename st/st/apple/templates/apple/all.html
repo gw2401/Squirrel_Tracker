@@ -1,22 +1,28 @@
-{% extends 'base.html' %}
-{% block title %}
-apple
-{% endblock %}
-{% block content %}
-<table class="table table-bordered">
-  <tbody>
-    <a href="{% url 'apple:add' %}">add</a>
-    {% for s in squirrel %}
-    <tr>
-      <td>
-	<li>{{s.Unique_Squirrel_ID}}</li>      
-        <a href="{% url 'apple:update' s.Unique_Squirrel_ID %}">edit</a>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-{% endblock %}
-
-
+{%extends 'base.html' %}
+	{% block title %}
+	apple
+	{% endblock %}
+	{% block content %}
+        <form>
+	    <div>
+	        <a href="/sightings/add"><button type="button">Add</button></a>
+	        <a href="/sightings/stats"><button type="button">Stats</button></a>
+		<a href="/map"><button type="button">Map</button></a>
+        </div>
+	</form>    
+    
+	<table class="table table-bordered">
+	  <tbody>
+	    <a href="{% url 'apple:add' %}">add</a>
+	    {% for s in squirrel %}
+	    <tr>
+	      <td>
+		<li>{{s.Unique_Squirrel_ID}}</li>      
+	        <a href="{% url 'apple:update' s.Unique_Squirrel_ID %}">edit</a>
+	      </td>
+	    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+	{% endblock %}
 
