@@ -39,7 +39,7 @@ class Command(BaseCommand):
                             Tail_flags = strtobool(row[24]),
                             Tail_twitches = strtobool(row[25]),
                             Approaches = strtobool(row[26]),
-                            Indifferent = strtobool(row[28]),
+                            Indifferent = strtobool(row[27]),
                             Runs_from = strtobool(row[28]),
                             )
                  squirrel.save()
