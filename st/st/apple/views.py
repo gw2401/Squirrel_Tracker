@@ -5,7 +5,6 @@ from .models import Squirrel
 from django.views.generic.edit import UpdateView
 from .forms import SquirrelForm
 
-
 def all_squirrel_sightings(request):
     if request.method == 'GET':
         squirrel = Squirrel.objects.all()
@@ -14,24 +13,34 @@ def all_squirrel_sightings(request):
             }
         return render(request,'apple/all.html',context)
 
-def squirrel_update(request, unique_squirrel_id):
-    template = 'apple/form.html'
-    squirrel = get_object_or_404(Squirrel,Unique_Squirrel_ID=unique_squirrel_id)
-    form = SquirrelForm(request.POST or request.GET, instance=squirrel)
-    if form.is_valid():
-        form.save()
-        return redirect('apple:all_squirrel_sightings')
-    context = {"form": form}
-    return render(request, template, context)      
+#def squirrel_update(request, Unique_Squirrel_ID):
+ #   template = 'apple/edit.html'
+  #  squirrel = Squirrel.objects.get(Unique_Squirrel_ID=Unique_Squirrel_ID)
+   # squirrel = get_object_or_404(Squirrel,Unique_Squirrel_ID=Unique_Squirrel_ID)
+   # form = SquirrelForm(request.POST, instance=squirrel)
+    #if form.is_valid():
+     #   form.save()
+      #  return redirect('apple:all_squirrel_sightings')
+   # context = {"form": form}
+   # return render(request, template, context)      
 
-def squirrel_delete(request, unique_squirrel_id):
-    template = 'apple/delete.html'
-    squirrel = get_object_or_404(Squirrel, Unique_Squirrel_ID=unique_squirrel_id)
-    if request.method == 'POST':
-        squirrel.delete()
-        return redirect('apple:all_squirrel_sightings')
-    context = {"squirrel": squirrel}
-    return render(request, template, context)
+def squirrel_update(request, Unique_Squirrel_ID):
+    template = 'apple/form.html'
+    squirrel = Squirrel.objects.get(Unique_Squirrel_ID = Unique_Squirrel_ID) 
+  #  form = SquirrelForm(request.POST or request.GET)
+
+    if request.method == "POST": 
+        form= SquirrelForm(request.POST, instance = squirrel) 
+        if form.is_valid(): 
+            form.save() 
+            return redirect('apple:all_squirrel_sightings')
+    else: 
+        form = SquirrelForm(instance= squirrel) 
+    
+    context ={  
+            'form':form, 
+            } 
+    return render(request,template,context) 
 
 def squirrel_create(request):
     template = 'apple/form.html'
@@ -41,6 +50,19 @@ def squirrel_create(request):
         return redirect('apple:all_squirrel_sightings')
     context = {"form": form}
     return render(request, template, context)
+
+#def squirrel_create(request):
+ #   template = 'apple/form.html'
+  #  if request.method == "POST":
+   #     form = SquirrelForm(request.POST)
+    #    if form.is_valid():
+     #       form.save()
+      #      return redirect('apple:all_squirrel_sightings')
+    
+   # context = {
+    #        "form": form,
+     #       }
+   # return render(request, template, context)
 
 def squirrel_stats(request):
     from django.db.models import Count
@@ -62,7 +84,7 @@ def squirrel_stats(request):
 
 def map(request):
     if request.method == 'GET':
-        squirrels = Squirrel.objects.all()
+        squirrels = Squirrel.objects.all()[:100]
        # latitude = Squirrel.objects.values("Latitude")
        # Longtitude = Squirrel.objects.values("Longtitude")
         context = {

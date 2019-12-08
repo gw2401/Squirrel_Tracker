@@ -1,0 +1,12 @@
+<!doctype html> 
+ <html> 
+ <body> 
+ <h1>Edit the squirrel: {{squirrel.Unique_Squirrel_ID }}</h1> 
+ <form action="/sightings/{{SquirrelTracker.Unique_Squirrel_ID}}" method = 'POST'> 
+ {% csrf_token %} 
+ {{ form.as_p}} 
+ <br> 
+ <input type ='submit' name = 'submit'> 
+ </form>
+ </body> 
+ </html>

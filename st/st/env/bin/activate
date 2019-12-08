@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/gw2401/st/st/env"
+VIRTUAL_ENV="/home/yz3675/Squirrel_Tracker/st/st/env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
